@@ -14,7 +14,7 @@
 | ECS | `ecs.g9i.large`，2 vCPU / 8 GiB RAM | 每队 1 台 |
 | 系统盘 | 80 GiB ESSD Entry | 随 ECS 提供 |
 | 百炼 API Key | 每队 1 个独立 Key | 默认提供 |
-| API Key 费用上限 | **RMB 2,000 / 两个月** | 适用于比赛提供的百炼 Key，不按月重新计算 |
+| API Key 预算上限 | 暂未配置 | 请合理控制调用量并关注费用 |
 | PostgreSQL | 共享 RDS PostgreSQL Serverless | 按需申请 |
 | OSS | 私有对象存储 | 按需申请 |
 | Web Search | 百炼内置联网搜索 | 按需使用 |
@@ -121,20 +121,17 @@ Region:           China North 2 (Beijing)
 Workspace: AI-Campaign-2026
 Region:    China North 2 (Beijing)
 Key scope: Team-specific
-Budget cap: RMB 2,000 for the full two-month campaign
 ```
 
-**RMB 2,000 是比赛提供的百炼 API Key 在整个两个月周期内的费用上限，不是每月 RMB 2,000。模型、Embedding、Web Search 和 TTS 等通过该 Key 产生的费用均计入该上限。**
+目前 API Key 的预算上限暂未配置。请合理控制模型、Embedding、Web Search 和 TTS 等调用，并关注相关费用。
 
-当调用量接近上限时，请先检查：
+当调用量或费用明显增加时，请先检查：
 
 - 是否存在 Agent 无限循环或过多 retry
 - 是否所有步骤都在使用高价模型
 - 是否重复传入完整历史对话或长文档
 - 是否设置了过大的输出长度
 - 是否存在不必要的批量或自动化调用
-
-如确有合理业务需求需要追加额度，请联系组织方评估。
 
 ### 4.1 API Key 安全
 
@@ -177,7 +174,6 @@ print(response.choices[0].message.content)
 
 队伍可以自行接入其他模型平台或外部 API。需要注意：
 
-- 外部服务费用不计入比赛提供的 RMB 2,000 百炼 Key 上限。
 - 外部账号、凭证、配额和费用由队伍自行管理。
 - 不论使用哪家模型，均需遵守相同的数据分类、安全、隐私和合规要求。
 - 未经批准，不要向外部服务发送生产客户数据、敏感信息、凭证或机密数据。
@@ -225,7 +221,7 @@ DeepSeek V4.1 Flash 北京时间 08:00–22:00 为忙时，其余时间为闲时
 
 中文汉字在按字符计费的模型中通常按 2 个计费字符计算。约 5,000 个纯中文汉字约等于 10,000 个计费字符，对应公开原价约 ¥0.8。
 
-TTS 调用费用计入本队比赛百炼 API Key 的 RMB 2,000 两个月上限。声音复刻涉及个人声音特征时，必须获得明确授权。
+通过比赛百炼 API Key 产生的 TTS 调用费用计入本队的 API 使用费用。声音复刻涉及个人声音特征时，必须获得明确授权。
 
 ### 5.4 选择建议
 
