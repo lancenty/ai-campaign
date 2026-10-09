@@ -196,7 +196,7 @@ print(response.choices[0].message.content)
 | `deepseek-v4.1-flash` | 闲时 ¥1 / 忙时 ¥2 | 闲时 ¥4 / 忙时 ¥8 | 闲时 ¥0.1 / 忙时 ¥0.2 | 复杂推理和 Agent；支持百炼内置联网搜索 |
 | `ZHIPU/GLM-5.3-FlashX` | ¥2 | ¥7 | ¥0.57 | 低延迟、多模态和文件场景 |
 | `glm-5.3` | ¥8 | ¥28 | ¥2 | 复杂代码、长程 Agent 和高难度任务 |
-| `qwen3.8-max` | ¥12 | ¥36 | ¥1.5 | 质量敏感的复杂专业任务 |
+| `qwen3.8-max-0902` | ¥12 | ¥36 | ¥1.5 | 固定快照；质量敏感的复杂专业任务 |
 
 DeepSeek V4.1 Flash 北京时间 08:00–22:00 为忙时，其余时间为闲时。
 
@@ -232,7 +232,7 @@ TTS 调用费用计入本队比赛百炼 API Key 的 RMB 2,000 两个月上限�
 - 默认先使用 `qwen3.8-flash`。
 - 需要更强推理或联网能力时测试 `deepseek-v4.1-flash`。
 - 对低延迟、多模态或文件输入，可测试 `ZHIPU/GLM-5.3-FlashX`。
-- 只有在质量收益明显时再使用 `glm-5.3` 或 `qwen3.8-max`。
+- 只有在质量收益明显时再使用 `glm-5.3` 或 `qwen3.8-max-0902`。
 
 ---
 
@@ -246,7 +246,7 @@ TTS 调用费用计入本队比赛百炼 API Key 的 RMB 2,000 两个月上限�
 | --- | :---: |
 | `qwen3.8-flash` | ✅ |
 | `deepseek-v4.1-flash` | ✅ |
-| `qwen3.8-max` | ✅ |
+| `qwen3.8-max-0902` | ✅ |
 | `ZHIPU/GLM-5.3-FlashX` | ❌ |
 | `glm-5.3` | ❌ |
 
