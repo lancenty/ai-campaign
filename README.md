@@ -186,7 +186,7 @@ print(response.choices[0].message.content)
 
 ## 5. 可用模型与公开价格
 
-> 以下为华北 2（北京）公开原价，截至 2026-10-09。单位为 **人民币 / 每 100 万 Token**。实际账单以阿里云出账为准。
+> 以下为华北 2（北京）公开原价，截至 2026-10-09。生成模型价格单位为 **人民币 / 每 100 万 Token**。实际账单以阿里云出账为准。
 
 ### 5.1 生成模型
 
@@ -207,7 +207,27 @@ DeepSeek V4.1 Flash 北京时间 08:00–22:00 为忙时，其余时间为闲时
 | `qwen3.7-text-embedding-flash` | ¥0.125 / 百万输入 Token | 默认高性价比选择 |
 | `qwen3.7-text-embedding` | ¥0.5 / 百万输入 Token | 需要更多向量维度配置时使用 |
 
-### 5.3 选择建议
+### 5.3 TTS 语音合成（默认开放）
+
+以下 TTS 模型在比赛业务空间中默认开放，无需单独申请：
+
+| Model ID | 北京公开价格 | 适用场景 |
+| --- | ---: | --- |
+| `qwen3-tts-instruct-flash` | ¥0.8 / 万字符 | 默认 TTS；Agent 播报、语音回复、风格和情绪控制 |
+| `cosyvoice-v3.5-flash` | ¥0.8 / 万字符 | 声音复刻、声音设计和自定义音色 |
+| `qwen-audio-3.1-tts-flash` | 输入 ¥1.5/M Token；输出 ¥12/M Token | 实时语音助手、流式输出、方言和细粒度声音控制 |
+
+选择建议：
+
+1. 普通语音播报：`qwen3-tts-instruct-flash`
+2. 需要克隆或设计音色：`cosyvoice-v3.5-flash`
+3. 需要实时对话、方言和低延迟：`qwen-audio-3.1-tts-flash`
+
+中文汉字在按字符计费的模型中通常按 2 个计费字符计算。约 5,000 个纯中文汉字约等于 10,000 个计费字符，对应公开原价约 ¥0.8。
+
+TTS 调用费用计入本队比赛百炼 API Key 的 RMB 2,000 两个月上限。声音复刻涉及个人声音特征时，必须获得明确授权。
+
+### 5.4 选择建议
 
 - 默认先使用 `qwen3.8-flash`。
 - 需要更强推理或联网能力时测试 `deepseek-v4.1-flash`。
@@ -260,31 +280,7 @@ response = client.chat.completions.create(
 
 ---
 
-## 7. TTS 语音合成（默认开放）
-
-以下 TTS 模型在比赛业务空间中默认开放，无需单独申请：
-
-| Model ID | 北京公开价格 | 适用场景 |
-| --- | ---: | --- |
-| `qwen3-tts-instruct-flash` | ¥0.8 / 万字符 | 默认 TTS；Agent 播报、语音回复、风格和情绪控制 |
-| `cosyvoice-v3.5-flash` | ¥0.8 / 万字符 | 声音复刻、声音设计和自定义音色 |
-| `qwen-audio-3.1-tts-flash` | 输入 ¥1.5/M Token；输出 ¥12/M Token | 实时语音助手、流式输出、方言和细粒度声音控制 |
-| `qwen-audio-3.1-tts-next` | 输入 ¥6/M Token；输出 ¥12/M Token | 多人物播客、音效、环境声和完整音频生成 |
-
-选择建议：
-
-1. 普通语音播报：`qwen3-tts-instruct-flash`
-2. 需要克隆或设计音色：`cosyvoice-v3.5-flash`
-3. 需要实时对话、方言和低延迟：`qwen-audio-3.1-tts-flash`
-4. 需要播客、多人对话、音效和环境声：`qwen-audio-3.1-tts-next`
-
-中文汉字在按字符计费的模型中通常按 2 个计费字符计算。约 5,000 个纯中文汉字约等于 10,000 个计费字符，对应公开原价约 ¥0.8。
-
-TTS 调用费用计入本队比赛百炼 API Key 的 RMB 2,000 两个月上限。声音复刻涉及个人声音特征时，必须获得明确授权。
-
----
-
-## 8. 调用与费用控制
+## 7. 调用与费用控制
 
 建议应用记录每次请求的：
 
@@ -308,7 +304,7 @@ request timestamp
 
 ---
 
-## 9. 数据与安全要求
+## 8. 数据与安全要求
 
 - 只使用已获批准的数据进行测试和模型调用。
 - 未经批准，不得发送生产客户数据、敏感信息、凭证或机密数据。
@@ -318,7 +314,7 @@ request timestamp
 
 ---
 
-## 10. 申请额外资源
+## 9. 申请额外资源
 
 请提供：
 
@@ -339,14 +335,13 @@ request timestamp
 
 ---
 
-## 11. 官方参考资料
+## 10. 官方参考资料
 
 - Model Studio API endpoint: https://help.aliyun.com/zh/model-studio/base-url
 - Model pricing: https://help.aliyun.com/zh/model-studio/model-pricing
 - Web Search: https://help.aliyun.com/zh/model-studio/web-search
 - TTS models: https://help.aliyun.com/zh/model-studio/tts-model
 - Qwen-Audio 3.1 TTS Flash: https://help.aliyun.com/zh/model-studio/qwen-audio-3-1-tts-flash
-- Qwen-Audio 3.1 TTS Next: https://help.aliyun.com/zh/model-studio/qwen-audio-3-1-tts-next
 - CosyVoice 3.5 Flash: https://help.aliyun.com/zh/model-studio/cosyvoice-v3-5-flash
 - RDS PostgreSQL Serverless: https://help.aliyun.com/zh/rds/apsaradb-rds-for-postgresql/serverless-apsaradb-rds-for-postgresql-instances/
 - ECS g9i: https://help.aliyun.com/zh/ecs/user-guide/general-purpose-instance-families/
